@@ -35,7 +35,12 @@ def play_hangman(secret_word) :
             mistakes += 1
         else :
             print "Good"
-        
+        if '*' not in puzzle :
+            print "Congragulations!! You found the word %r" % secret_word
+            break
+        elif mistakes == max_mistakes :
+            print "You lose!! The word is %r" % secret_word
+            break
     
 wordlist = get_wordlist()
 secret = select_word(wordlist)
