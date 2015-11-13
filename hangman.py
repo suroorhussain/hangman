@@ -15,27 +15,26 @@ def select_word(wordlist) :
 def play_hangman(secret_word) :
     length=len(secret_word)
     used = []
-    puzzle= "*" * length
+    puzzle= list("*" * length)
     # print puzzle[1]
-    puzzle[1] = "1"
-    print puzzle
+    # print puzzle
     mistakes=0
     max_mistakes=10
     while mistakes < max_mistakes :
-        print puzzle
+        print ''.join(puzzle)
         print "Used {} :: Missed : {}".format(used,mistakes)
         print "Enter a letter : ",
         option = raw_input()
         used.append(option)
         hit = -1
-        while secret_word.find(option) != -1 :
-            hit = secret_word.find(option,hit+1)
+        while secret_word.find(option, hit + 1) != -1 :
+            hit = secret_word.find(option, hit + 1)
             puzzle[hit] = secret_word[hit]
-            if hit == -1 :
-                print "Incorrect"
-                mistakes += 1
-            else :
-                print "Good"
+        if hit == -1 :
+            print "Incorrect"
+            mistakes += 1
+        else :
+            print "Good"
         
     
 wordlist = get_wordlist()
